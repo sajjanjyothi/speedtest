@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <curl/curl.h>
 
@@ -96,9 +95,9 @@ static int collectData(RESULT *rInfo, int count, const char *URL)
 static char *calculateMedian(int count, RESULT *rInfo, char *result)
 {
     int idx = 0;
-    char *s = "SKTEST;%s;%d;%f;%f;%f;%f";
+    char *fmt = "SKTEST;%s;%d;%f;%f;%f;%f";
     char *ipAddress;
-    long resPonseCode = 0;
+    long responseCode = 0;
 
     double CURLINFO_NAMELOOKUP_TIME = 0.0;
     double CURLINFO_CONNECT_TIME = 0.0;
@@ -106,7 +105,7 @@ static char *calculateMedian(int count, RESULT *rInfo, char *result)
     double CURLINFO_TOTAL_TIME = 0.0;
 
     ipAddress = rInfo->ipAddress;
-    resPonseCode = rInfo->httpResponseCode;
+    responseCode = rInfo->httpResponseCode;
     for (idx = 0; idx < count ; idx++)
     {
         CURLINFO_NAMELOOKUP_TIME += rInfo->CURLINFO_NAMELOOKUP_TIME;
@@ -115,7 +114,7 @@ static char *calculateMedian(int count, RESULT *rInfo, char *result)
         CURLINFO_TOTAL_TIME += rInfo->CURLINFO_TOTAL_TIME;
         rInfo ++;
     }
-    sprintf(result, s, ipAddress,resPonseCode,(
+    sprintf(result, fmt, ipAddress,responseCode,(
                                                 CURLINFO_NAMELOOKUP_TIME/count),
                                                 (CURLINFO_CONNECT_TIME/count),
                                                 (CURLINFO_STARTTRANSFER_TIME/count),
