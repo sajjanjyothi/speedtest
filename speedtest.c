@@ -144,5 +144,6 @@ int getBWData(int count, const char *URL, char *OutData)
         free (rInfo);
         return -1;
     }
+    free (rInfo);
     return 0; 
 }
