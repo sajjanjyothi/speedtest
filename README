@@ -1,0 +1,8 @@
+I haven't used header field for statistics collection
+collated all other values
+makefile has to be modified for curl library location
+make can be initiated as
+make
+This will generate binary as speedtest
+./speedtest -n <count> 
+This will generate ouput in prefered format
