@@ -1,5 +1,32 @@
-makefile has to be modified for curl library location
-make can be initiated as
-make
+Cmake has been used to generate Makefiles
+
+cmake can be installed as
+apt-get install cmake (in debian distributions).
+
+How to generate Makefiles
+============================
+make files can be generated as 
+cmake .
+
+How to compile project
+=======================
+project can ne compiled as 
+make clean; make
+
 This will generate binary as speedtest
-./speedtest -n <count> 
+./speedtestapp: -n count [-H Header-name: Header-value]
+
+
+Not Implemented
+================
+Multiple header value appending to the request is not implemented.
+
+Improvements can be done on existing logic
+=========================================
+1) Restricted number of threads pool can be used to parallelize the request and consolidate the request.This Will be bit more effective , but resource usage for a shorted period will be more.
+2) Current implementation can hog the CPU if the number of samples are more. 
+3) Single failure on HTTP transaction is treated as failure in this implementation, can be imporved by back off retry mechanism(Design decisions)
+
+UNIT Testing
+=============
+cunit can be used as a unit test tool for testing internal functions.
