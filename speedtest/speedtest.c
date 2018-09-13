@@ -16,7 +16,7 @@ typedef struct ResultValue
 /******************** Function Prototypes , All internal functions are made as static for not exposing it to the extrenal world*************/
 static int getResultInfo(CURL *curl, RESULT *rInfo, int count);
 static int collectData(RESULT *rInfo, int count, char *header, const char *URL);
-static char *calculateMedian(int count, RESULT *rInfo , char *);
+static int calculateMedian(int count, RESULT *rInfo , char *);
 
 static int getResultInfo(CURL *curl, RESULT *rInfo, int count)
 {
@@ -133,7 +133,7 @@ static double getMedian(double *values, int count)
     }
 }
 
-static char *calculateMedian(int count, RESULT *rInfo, char *result)
+static int calculateMedian(int count, RESULT *rInfo, char *result)
 {
     int idx = 0;
     char *fmt = "SKTEST;%s;%d;%f;%f;%f;%f";
@@ -156,7 +156,7 @@ static char *calculateMedian(int count, RESULT *rInfo, char *result)
                                                 CURLINFO_CONNECT_TIME,
                                                 CURLINFO_STARTTRANSFER_TIME,
                                                 CURLINFO_TOTAL_TIME);
-    return result;
+    return 0;
 
 }
 
